@@ -29,7 +29,7 @@ gmt grdinfo @arab_relief.nc
     -W0.1p -Gpapayawhip -Slightcyan -Df -K > $ps
 # Step-5. Make color palette
 #gmt makecpt -dem3.cpt -V -T-7898/8271 > myocean.cpt
-gmt makecpt -dem2.cpt -V -T-5760/4357 > myocean.cpt
+gmt makecpt -Cglobe.cpt -V -T-5760/4357 > myocean.cpt
 #gmt makecpt --help
 # Make raster image
 
@@ -63,7 +63,7 @@ gmt psscale -Dg47/-2.9+w15.0c/0.4c+h+o0.3/0i+ml -R47/77/0/31 -J -Cmyocean.cpt \
     --FONT_LABEL=8p,Helvetica,black \
     --FONT_ANNOT_PRIMARY=8p,Helvetica,black \
     --MAP_ANNOT_OFFSET=0.1c \
-    -Baf+l"Color scale dem2: DEM scale by Dewez/Wessel [R=-5760/4357, C=RGB]" \
+    -Baf+l"Color scale 'globe' for global bathymetry/topography relief [R=-5760/4357, H=0, C=RGB]" \
     -I0.2 -By+lm -O -K >> $ps
     
 # Add bathymetric contours
@@ -98,10 +98,10 @@ gmt psmeca CMT.txt -R -J -Sd0.5/2/u -Gred -L0.1p -Fa/5p/it \
 
 # Texts
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,Helvetica,blue+jLB >> $ps << EOF
+-F+jTL+f10p,Helvetica,yellow+jLB >> $ps << EOF
 63.2 20.8 Oman
 63.2 20.2 Abyssal
-63.2 19.6 Plain
+63.2 19.5 Plain
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,Helvetica,yellow+jLB+a-290 >> $ps << EOF
@@ -116,7 +116,7 @@ gmt pstext -R -J -N -O -K \
 62.7 21.2 Zone
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f10p,Helvetica,blue+jLB >> $ps << EOF
+-F+jTL+f10p,Helvetica,yellow+jLB >> $ps << EOF
 60.0 22.6 Gulf of
 60.1 22.0 Oman
 EOF
