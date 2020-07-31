@@ -17,7 +17,7 @@ gmt set FORMAT_GEO_MAP=dddF \
 # Overwrite defaults of GMT
 gmtdefaults -D > .gmtdefaults
 
-grdcut GEBCO_2019.nc -R65/107/-35/21 -Gner_relief.nc
+#grdcut GEBCO_2019.nc -R65/107/-35/21 -Gner_relief.nc
 #grdcut ETOPO1_Ice_g_gmt4.grd -R65/107/-35/21 -Gner_relief.nc
 
 gdalinfo ner_relief.nc -stats
@@ -90,14 +90,35 @@ gmt pstext -R -J -N -O -K \
 -F+f14p,Helvetica,gold+jLB -Gdimgray@30>> $ps << EOF
 74 4.3 I N D I A N   P L A T E
 75.1 -17.0 AUSTRALIAN
-75.1 -18.2 PLATE
+77.1 -18.2 PLATE
 65.5 -32.6 ANTARCTIC
-65.5 -33.7 PLATE
+67.5 -33.7 PLATE
 94.0 9.0 EURASIAN PLATE
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f9p,Helvetica,gold+jLB+a-330 -Gdimgray@30>> $ps << EOF
+65.4 -25.5 AFRICAN
+66.0 -26.6 PLATE
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,Helvetica,black+jLB+a-53 -Gwhite@40>> $ps << EOF
 69.5 -26.4 South-East Indian Ridge
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,Helvetica,black+jLB+a-73 -Gwhite@40>> $ps << EOF
+67.5 2.0 C e n t r a l
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,Helvetica,black+jLB+a-285 -Gwhite@40>> $ps << EOF
+68.5 -10.5 I n d i a n
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,Helvetica,black+jLB+a-53 -Gwhite@40>> $ps << EOF
+67.0 -17.5 R i d g e
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f10p,Helvetica,black+jLB+a-49 >> $ps << EOF
+101.0 0.5 S u m a t r a
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f12p,Helvetica,white+jLB+a-274 >> $ps << EOF
@@ -121,8 +142,9 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f14p,Helvetica,white+jLB >> $ps << EOF
-75.3 -4.5 Central Indian
-75.3 -6.5 Basin
+75.3 -4.5 Central
+75.3 -6.5 Indian
+75.3 -8.5 Basin
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f12p,Helvetica,yellow+jLB >> $ps << EOF
@@ -145,11 +167,11 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f13p,Helvetica,black+jLB -Gwhite@40 >> $ps << EOF
-97.7 16.0 Thailand
+99.0 16.0 Thailand
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f11p,Helvetica,yellow+jLB+a-53 >> $ps << EOF
-101.0 7.0 Malaysia
+-F+jTL+f11p,Helvetica,black+jLB+a-54 >> $ps << EOF
+101.0 5.6 Malaysia
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,Helvetica,black+jLB -Gwhite@40 >> $ps << EOF
@@ -161,13 +183,24 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,Helvetica,white+jLB+a-53 >> $ps << EOF
-94.0 2.0 Sunda Trench
+95.5 -0.2 Sunda Trench
 EOF
 gmt pstext -R -J -N -O -K \
--F+jTL+f14p,Helvetica,black+jLB+a-8 >> $ps << EOF
+-F+jTL+f13p,Helvetica,black+jLB+a-10 >> $ps << EOF
 92.0 -30.5 Broken Ridge
 EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,Helvetica,white+jLB >> $ps << EOF
+74.0 -22.9 Rodrigues
+74.0 -23.9 Triple
+74.0 -24.9 Junction
+EOF
 #
+
+# Arrow of Rodrigues triple junction +bi
+gmt psxy -R -J -Sv0.5c+ea -Gyellow@30 -W1.0p -O -K << EOF >> $ps
+73.5 -23.5 210 1.3c
+EOF
 
 # Add color legend
 gmt psscale -Dg65/-38+w15.2c/0.4c+h+o0.0/0i+ml -R -J -Cmyocean.cpt \
