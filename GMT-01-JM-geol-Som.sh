@@ -1,5 +1,5 @@
 #!/bin/sh
-# Purpose: shaded relief grid raster map from the GEBCO dataset (here: Ninety East Ridge, Indian Ocean)
+# Purpose: shaded relief grid raster map from the GEBCO dataset (here: the Somali Sea and the Seychelles, Indian Ocean)
 # GMT modules: gmtset, gmtdefaults, grdcut, makecpt, grdimage, psscale, grdcontour, psbasemap, gmtlogo, psconvert
 
 # GMT set up
@@ -24,8 +24,6 @@ gdalinfo som_relief.nc -stats
 # Minimum=-6538.000, Maximum=2805.000
 # Make color palette
 # makecpt --help
-#gmt makecpt -Cdem3.cpt -V -T-6857/3206 > myocean.cpt
-#gmt makecpt -Cdem2.cpt -V -T-6857/3206 > myocean.cpt
 gmt makecpt -Ctopo.cpt -V -T-6857/3206 > myocean.cpt
 
 
