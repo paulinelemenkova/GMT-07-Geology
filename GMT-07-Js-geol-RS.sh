@@ -1,5 +1,5 @@
 #!/bin/sh
-# Purpose: shaded relief grid raster map from the ETOPO1/GEBCO datasets (here: Ross Sea)
+# Purpose: Tectonic/geologic settings in the Ross Sea region
 # GMT modules: gmtset, gmtdefaults, grdcut, makecpt, grdimage, psscale, grdcontour, psbasemap, gmtlogo, psconvert
 
 # Step-2. GMT set up
@@ -106,7 +106,7 @@ gmt psscale -R -J -Cmyocean.cpt\
     --FONT_LABEL=7p,Helvetica,black \
     --FONT_ANNOT_PRIMARY=6p,Helvetica,dimgray \
     --MAP_LABEL_OFFSET=0.1c \
-    -Bg1000f500a2000+l"Color scale: geo [R=-7160/4763, H=0, C=RGB]" \
+    -Bg1000f500a2000+l"Color scale 'topo': Sandwell/Anderson colors for topography [R=-6764/3751, H=0, C=HSV]" \
     -I0.2 -By+lm -O -K >> $ps
 
 # Add legend
