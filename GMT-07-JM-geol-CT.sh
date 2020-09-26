@@ -25,7 +25,8 @@ gdalinfo ct_relief.nc -stats
 ps=GMT_geol_CT.ps
 
 # Make color palette
-gmt makecpt -Cdavos.cpt -V -T-6201/4161 > myocean.cpt
+#gmt makecpt -Cdavos.cpt -V -T-6201/4161 > myocean.cpt
+gmt makecpt -Cglobe.cpt -V -T-6201/4161 > myocean.cpt
 
 # Make raster image
 gmt grdimage ct_relief.nc -Cmyocean.cpt -R224/240/35/55 -JM6i -P -I+a15+ne0.75 -Xc -K > $ps
@@ -34,15 +35,15 @@ gmt grdimage ct_relief.nc -Cmyocean.cpt -R224/240/35/55 -JM6i -P -I+a15+ne0.75 -
 gmt psbasemap -R -J \
     -Bpxg8f2a4 -Bpyg6f2a2 -Bsxg4 -Bsyg2 \
     --MAP_TITLE_OFFSET=1.0c \
-    --FONT_ANNOT_PRIMARY=8p,Helvetica,dimgray \
+    --FONT_ANNOT_PRIMARY=8p,Helvetica,black \
     --MAP_ANNOT_OFFSET=0.1c \
     -B+t"Geologic settings of the Cascadia Trench, west Canada" -O -K >> $ps
     
 # Add legend
 gmt psscale -Dg217/35+w15.0c/0.4c+h+o6.8/-1.5c+ml -R -J -Cmyocean.cpt \
-    --FONT_LABEL=8p,Helvetica,dimgray \
-    --FONT_ANNOT_PRIMARY=5p,Helvetica,dimgray \
-    -Baf+l"Color scale: davos (Perceptually uniform colormap by F. Crameri [C=RGB -6201/4161])" \
+    --FONT_LABEL=8p,Helvetica,black \
+    --FONT_ANNOT_PRIMARY=8p,Helvetica,black \
+    -Baf+l"Color scale: globe (Colors for global bathymetry/topography relief [C=RGB R=-6201/4161], H=0)" \
     -I0.2 -By+lm -O -K >> $ps
 
 #Add geological lines and points
@@ -137,7 +138,7 @@ gmt grdcontour ct_relief.nc -R -J -C2000 -A1000 -Wthinnest,white -O -K >> $ps
 
 # Add scale, directional rose
 gmt psbasemap -R -J \
-    --FONT=8p,Palatino-Roman,dimgray \
+    --FONT=8p,Helvetica,black \
     --MAP_TITLE_OFFSET=0.3c \
     -Lx13.4c/-4.1c+c50+w300k+l"Mercator projection. Scale (km)"+f \
     -UBL/10p/-120p -O -K >> $ps
