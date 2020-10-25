@@ -24,7 +24,8 @@ gdalinfo cs_relief.nc -stats
 # -8619.841796875,5535.625
 # Make color palette
 # makecpt --help
-gmt makecpt -Cworld.cpt -T-8620/5536 > myocean.cpt
+# gmt makecpt -Cworld.cpt -T-8620/5536 > myocean.cpt
+gmt makecpt -Cetopo1.cpt -T-8620/5536 > myocean.cpt
 
 # Generate a file
 ps=GMT_geol_CS.ps
@@ -34,6 +35,8 @@ gmt grdimage cs_relief.nc -Cmyocean.cpt -R270/305/7/24 -JM6i -P -I+a15+ne0.75 -X
 # Add grid
 gmt psbasemap -R -J \
     -Bpx104f2.5a5 -Bpyg10f2.5a5 -Bsxg5 -Bsyg5 \
+    --FONT_ANNOT_PRIMARY=7p,Helvetica,dimgray \
+    --FONT_LABEL=7p,Helvetica,dimgray \
     --MAP_TITLE_OFFSET=1.2c \
     -B+t"Geologic map of the Caribbean Sea region" -O -K >> $ps
     
@@ -43,6 +46,8 @@ gmt grdcontour cs_relief.nc -R -J -C1000 -W0.1p -O -K >> $ps
 # Add scale, directional rose
 gmt psbasemap -R -J \
     --FONT=8p,Palatino-Roman,black \
+    --FONT_ANNOT_PRIMARY=7p,Helvetica,dimgray \
+    --FONT_LABEL=7p,Helvetica,dimgray \
     --MAP_TITLE_OFFSET=0.1c \
     --MAP_ANNOT_OFFSET=0.1c \
     -Tdx14.2c/1.0c+w0.2i+f2+l+o0.1c \
@@ -57,12 +62,13 @@ gmt pscoast -R -J -P \
 gmt psscale -Dg264.4/7+w7.7c/0.4c+v+o0.3/0i+ml -R270/305/7/24 -J -Cmyocean.cpt \
     --FONT_LABEL=5p,Helvetica,dimgray \
     --FONT_ANNOT_PRIMARY=6p,Helvetica,black \
-    -Baf+l"Color scale 'world':  Colors for global bathymetry/topography relief [R=-8620/5536, H=0, C=HSV]" \
+    -Baf+l"Color scale 'etopo1':  Colormap used in the ETOPO1 global relief map [R=-8620/5536, H=0, C=HSV]" \
     -I0.2 -By+lm -O -K >> $ps
 
 # Add geological lines and points
-#gmt makecpt -Crainbow -T0/700/50 -Z > rain.cpt
-gmt psxy -R -J trench.gmt -Sf1.5c/0.2c+l+t -Wthick,yellow -Gpurple -O -K >> $ps
+# gmt makecpt -Crainbow -T0/700/50 -Z > rain.cpt
+# gmt psxy -R -J trench.gmt -Sf1.5c/0.2c+l+t -Wthick,yellow -Gpurple -O -K >> $ps
+gmt psxy -R -J trench_PR1.gmt -Sf1.5c/0.2c+r+t -Wthick,yellow -Gyellow -O -K >> $ps
 gmt psxy -R -J volcanoes.gmt -St0.3c -Gred -Wthinnest -O -K >> $ps
 # tectonic slab contours
 gmt psxy -R -J SC_caribbean.txt -Wthinner,purple -O -K >> $ps
@@ -190,6 +196,10 @@ gmt pstext -R -J -N -O -K \
 296 16 Aves Ridge
 EOF
 gmt pstext -R -J -N -O -K \
+-F+jTL+f7p,Helvetica,brown+jLB+a-350 -Gwhite@40 >> $ps << EOF
+275.5 18.4 Cayman Ridge
+EOF
+gmt pstext -R -J -N -O -K \
 -F+jTL+f7p,Helvetica,brown+jLB -Gwhite@30 >> $ps << EOF
 283 8.5 Choco
 283 7.9 Block
@@ -231,4 +241,4 @@ gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y5.7c -N -O \
 EOF
 
 # Convert to image file using GhostScript
-gmt psconvert GMT_geol_CS.ps -A3.5c -E720 -Tj -Z
+gmt psconvert GMT_geol_CS.ps -A0.5c -E720 -Tj -Z
