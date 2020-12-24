@@ -110,7 +110,7 @@ gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f12p,Helvetica,black+jLB -Gwhite@30 -Wthinnest >> $ps << EOF
-70.8 31.0 P A K I S T A N
+70.8 30.5 P A K I S T A N
 EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f10p,Helvetica,black+jLB -Gwhite@30 -Wthinnest >> $ps << EOF
@@ -135,7 +135,7 @@ gmt pstext -R -J -N -O -K \
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,Helvetica,gold+jLB -Gdimgray@30>> $ps << EOF
-72.5 27.5 I N D I A N  P L A T E
+72.5 28.2 I N D I A N  P L A T E
 EOF
 gmt pstext -R -J -N -O -K \
 -F+f14p,Helvetica,gold+jLB -Gdimgray@30>> $ps << EOF
@@ -145,6 +145,56 @@ EOF
 gmt pstext -R -J -N -O -K \
 -F+jTL+f11p,Times−Italic,white+jLB+a-324 >> $ps << EOF
 68.7 28.0 Indus River
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,2,yellow+jLB -Gdimgrey -Wthinnest >> $ps << EOF
+68.0 31.6 Muslim Bagh
+68.0 31.2 Ophiolite Complex
+EOF
+# Arrows
+gmt psxy -R -J -Sv0.5c+bt+ea -Gdred@30 -W1.0p -O -K << EOF >> $ps
+69.0 31.5 210 1.0c
+EOF
+#
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,2,yellow+jLB -Gdimgrey -Wthinnest >> $ps << EOF
+68.6 30.5 Sulaiman
+68.6 30.1 Fold Belt
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,2,yellow+jLB -Gdimgrey -Wthinnest >> $ps << EOF
+63.5 33.1 Afghan Block
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,0,yellow+jLB >> $ps << EOF
+72 31 Punjab
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f11p,0,yellow+jLB >> $ps << EOF
+68.2 26.2 Sindh
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,0,yellow+jLB >> $ps << EOF
+70.6 28.7 Cholistan
+70.7 28.3 Desert
+EOF
+gmt pstext -R -J -N -O -K \
+-F+jTL+f9p,0,yellow+jLB+a-312 >> $ps << EOF
+70.3 25.0 T  h  a  r     D  e  s  e  r  t
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@30 >> $ps << EOF
+74.2 31.2 Lahore
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+74 31 0.15c
+EOF
+gmt pstext -R -J -N -O -K \
+-F+f10p,0,black+jLB -Gwhite@30 >> $ps << EOF
+71.5 33.7 Peshawar
+EOF
+gmt psxy -R -J -Sc -W0.5p -Gyellow -O -K << EOF >> $ps
+71.3 34 0.15c
 EOF
 
 # Add legend -3.0
